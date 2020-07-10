@@ -1,0 +1,89 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "zabbix.fullname" . }}-web
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "zabbix.name" . }}-web
+  template:
+    metadata:
+      labels:
+        app: {{ template "zabbix.name" . }}-web
+    spec:
+      containers:
+        - name: zabbix-web
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+          env:
+          - name: MYSQL_USER
+            value: zabbix
+          - name: DB_SERVER_HOST
+            value: {{ template "zabbix.fullname" . }}-database
+          - name: MYSQL_PASSWORD
+            value: zabbix            
+          - name: MYSQL_DATABASE
+            value: zabbix                      
+          ports:
+          - containerPort: 8080
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "zabbix.fullname" . }}-server
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "zabbix.name" . }}-server
+  template:
+    metadata:
+      labels:
+        app: {{ template "zabbix.name" . }}-server
+    spec:
+      containers:
+        - name: zabbix-server
+          image: "{{ .Values.srvimage.repository }}:{{ .Values.srvimage.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+          env:
+          - name: MYSQL_USER
+            value: zabbix
+          - name: DB_SERVER_HOST
+            value: {{ template "zabbix.fullname" . }}-database
+          - name: MYSQL_PASSWORD
+            value: zabbix            
+          - name: MYSQL_DATABASE
+            value: zabbix                      
+          ports:
+          - containerPort: 10050
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "zabbix.fullname" . }}-database
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "zabbix.name" . }}-database
+  template:
+    metadata:
+      labels:
+        app: {{ template "zabbix.name" . }}-database
+    spec:
+      containers:
+        - name: zabbix-database
+          image: "{{ .Values.dbimage.repository }}:{{ .Values.dbimage.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+          env:
+          - name: MYSQL_USER
+            value: zabbix
+          - name: MYSQL_PASSWORD
+            value: zabbix           
+          - name: MYSQL_DATABASE
+            value: zabbix
+          - name: MYSQL_ROOT_PASSWORD
+            value: zabbix
+          ports:
+          - containerPort: 3306

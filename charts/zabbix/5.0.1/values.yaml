@@ -1,0 +1,11 @@
+image:
+  repository: 10.10.15.32:5443/x86/zabbix-web
+  tag: 5.0.1
+  pullPolicy: IfNotPresent
+srvimage:
+  repository: 10.10.15.32:5443/x86/zabbix-server
+  tag: 5.0.1
+dbimage:
+  repository: 10.10.15.32:5443/x86/mariadb
+  tag: 10.4.13
+
