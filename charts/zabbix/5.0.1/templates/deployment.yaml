@@ -76,9 +76,6 @@ spec:
         - name: zabbix-database
           image: "{{ .Values.dbimage.repository }}:{{ .Values.dbimage.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
-          args:
-          - --character-set-server=utf8mb4 
-          - --collation-server=utf8mb4_unicode_ci
           env:
           - name: MYSQL_USER
             value: zabbix
