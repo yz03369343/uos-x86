@@ -55,7 +55,7 @@ spec:
           - name: MYSQL_DATABASE
             value: zabbix                      
           ports:
-          - containerPort: 10050
+          - containerPort: 10051
 
 ---
 

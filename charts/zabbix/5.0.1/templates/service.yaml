@@ -17,8 +17,8 @@ metadata:
 spec:
   type: NodePort
   ports:
-    - port: 10050
-      targetPort: 10050
+    - port: 10051
+      targetPort: 10051
   selector:
     app: {{ template "zabbix.name" . }}-server
 ---
