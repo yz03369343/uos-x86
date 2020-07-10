@@ -1,0 +1,8 @@
+appVersion: 6.0.5
+description: "redis 6.0.5"
+name: redis
+version: 6.0.5
+kewords:
+- web
+home: https://www.redis.com/
+icon: http://10.10.15.32/image/redis-logo.png

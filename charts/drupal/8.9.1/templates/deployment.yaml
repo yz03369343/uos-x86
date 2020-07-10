@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "drupal.fullname" . }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "drupal.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "drupal.name" . }}
+    spec:
+      containers:
+        - name: drupal
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+          env:
+          - name: DB_USER
+            value: drupal
+          - name: DB_HOST
+            value: {{ template "drupal.fullname" . }}-database
+          - name: DB_PASSWORD
+            value: drupal            
+          - name: DB_NAME
+            value: drupal                      
+          ports:
+          - containerPort: 80
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "drupal.fullname" . }}-database
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "drupal.name" . }}-database
+  template:
+    metadata:
+      labels:
+        app: {{ template "drupal.name" . }}-database
+    spec:
+      containers:
+        - name: drupal-database
+          image: "{{ .Values.dbimage.repository }}:{{ .Values.dbimage.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+          env:
+          - name: MYSQL_USER
+            value: drupal
+          - name: MYSQL_PASSWORD
+            value: drupal           
+          - name: MYSQL_DATABASE
+            value: drupal
+          - name: MYSQL_ROOT_PASSWORD
+            value: drupal
+          ports:
+          - containerPort: 3306

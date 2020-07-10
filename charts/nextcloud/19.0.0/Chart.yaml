@@ -1,0 +1,8 @@
+appVersion: 19.0.0
+description: "nextcloud 19.0.0"
+name: nextcloud
+version: 19.0.0
+kewords:
+- web
+home: https://www.nextcloud.com/
+icon: http://10.10.15.32/image/nextcloud-logo.png

@@ -1,0 +1,8 @@
+image:
+  repository: 10.10.15.32:5443/x86/wordpress
+  tag: 5.4.2
+  pullPolicy: IfNotPresent
+dbimage:
+  repository: 10.10.15.32:5443/x86/mariadb
+  tag: 10.4.13
+

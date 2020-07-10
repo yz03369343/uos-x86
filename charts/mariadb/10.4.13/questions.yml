@@ -1,0 +1,44 @@
+categories:
+- database
+questions:
+- variable: defaultImage
+  default: "true"
+  description: "Use default Docker image"
+  label: Use Default Image
+  type: boolean
+  show_subquestion_if: false
+  group: "Container Images"
+  subquestions:
+  - variable: image.repository
+    default: "10.10.15.32:5443/x86/mariadb"
+    description: "Docker image name"
+    type: string
+    label: Image Name
+  - variable: image.tag
+    default: "10.4.13"
+    description: "Docker image tag"
+    type: string
+    label: Image Tag
+- variable: username
+  type: string
+  description: "User Name"
+  required: true
+  lable: User Name
+  group: useroption
+- variable: userpassword
+  type: password
+  description: "User Password"
+  required: true
+  lable: User Password
+  group: useroption
+- variable: userdatabase
+  type: string
+  description: "User Database"
+  required: true
+  lable: User database
+  group: useroption
+- variable: rootpassword
+  type: password
+  description: "Root Password"
+  lable: Root Password
+  group: useroption

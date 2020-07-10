@@ -1,0 +1,8 @@
+appVersion: 3.13.6
+description: "matomo 3.13.6"
+name: matomo
+version: 3.13.6
+kewords:
+- web
+home: https://www.matomo.com/
+icon: http://10.10.15.32/image/matomo-logo.png

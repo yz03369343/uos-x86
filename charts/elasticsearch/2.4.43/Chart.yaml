@@ -1,0 +1,8 @@
+appVersion: 7.8.0
+description: "elasticsearch 7.8.0"
+name: elasticsearch
+version: 7.8.0
+kewords:
+- web
+home: https://www.elasticsearch.com/
+icon: http://10.10.15.32/image/elasticsearch-logo.png

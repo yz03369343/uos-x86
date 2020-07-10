@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "tomcat.fullname" . }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "tomcat.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "tomcat.name" . }}
+    spec:
+      containers:
+        - name: tomcat
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+          ports:
+          - containerPort: 8080
+

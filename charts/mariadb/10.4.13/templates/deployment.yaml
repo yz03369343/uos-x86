@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "mariadb.fullname" . }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "mariadb.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "mariadb.name" . }}
+    spec:
+      containers:
+        - name: mariadb
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+          env:
+          - name: MYSQL_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ template "mariadb.fullname" . }}
+                key: mariadb-root-password
+          - name: MYSQL_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ template "mariadb.fullname" . }}
+                key: mariadb-password
+          - name: MYSQL_USER
+            value: {{ .Values.username | quote }} 
+          - name: MYSQL_DATABASE
+            value: {{ .Values.userdatabase | quote }}            
+          ports:
+          - containerPort: 3306
+

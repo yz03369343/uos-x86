@@ -1,0 +1,10 @@
+image:
+  repository: 10.10.15.32:5443/x86/influxdb
+  tag: 1.8.0
+  pullPolicy: IfNotPresent
+
+
+username:
+userpassword:
+userdatabase:
+rootpassword: 

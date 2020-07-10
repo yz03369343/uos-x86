@@ -1,0 +1,8 @@
+appVersion: 12.5.1
+description: "xwiki 12.5.1"
+name: xwiki
+version: 12.5.1
+kewords:
+- web
+home: https://www.xwiki.com/
+icon: http://10.10.15.32/image/xwiki-logo.png

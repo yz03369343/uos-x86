@@ -1,0 +1,8 @@
+appVersion: 7.0.5
+description: "grafana 7.0.5"
+name: grafana
+version: 7.0.5
+kewords:
+- web
+home: https://www.grafana.com/
+icon: http://10.10.15.32/image/grafana-logo.png

@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "redis.fullname" . }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "redis.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "redis.name" . }}
+    spec:
+      containers:
+        - name: redis
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+          ports:
+          - containerPort: 80
+

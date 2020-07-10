@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "traefik.fullname" . }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "traefik.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "traefik.name" . }}
+    spec:
+      containers:
+        - name: traefik
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+          ports:
+          - containerPort: 80
+          ports:
+          - containerPort: 8080
+          ports:
+          - containerPort: 443
+

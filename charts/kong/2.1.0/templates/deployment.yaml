@@ -1,0 +1,86 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "kong.fullname" . }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "kong.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "kong.name" . }}
+    spec:
+      initContainers:
+        - name: kong-init
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+          command:
+          - "kong migrations bootstrap"
+          env:
+          - name: KONG_PG_HOST
+            value: {{ template "kong.fullname" . }}-database
+          - name: KONG_PG_PASSWORD
+            value: kong              
+          - name: KONG_PG_USER
+            value: kong
+          - name: KONG_PG_DATABASE
+            value: kong               
+          - name: KONG_DATABASE
+            value: postgres
+      containers:
+        - name: kong
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+          env:
+          - name: KONG_PG_HOST
+            value: {{ template "kong.fullname" . }}-database
+          - name: KONG_PG_PASSWORD
+            value: kong              
+          - name: KONG_PG_USER
+            value: kong
+          - name: KONG_PG_DATABASE
+            value: kong               
+          - name: KONG_DATABASE
+            value: postgres    
+          - name: KONG_ADMIN_LISTEN
+            value: "0.0.0.0:8001, 0.0.0.0:8444 ssl"              
+          ports:
+          - containerPort: 8000
+          ports:
+          - containerPort: 8443       
+          ports:
+          - containerPort: 8001           
+          ports:
+          - containerPort: 8444         
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "kong.fullname" . }}-database
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "kong.name" . }}-database
+  template:
+    metadata:
+      labels:
+        app: {{ template "kong.name" . }}-database
+    spec:
+      containers:
+        - name: kong-database
+          image: "{{ .Values.dbimage.repository }}:{{ .Values.dbimage.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+          env:
+          - name: POSTGRES_USER
+            value: kong
+          - name: POSTGRES_PASSWORD
+            value: kong           
+          - name: POSTGRES_DB
+            value: kong
+          - name: POSTGRES_ROOT_PASSWORD
+            value: kong
+          ports:
+          - containerPort: 5432

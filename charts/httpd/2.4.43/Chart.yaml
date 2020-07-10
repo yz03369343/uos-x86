@@ -1,0 +1,8 @@
+appVersion: 2.4.43
+description: "httpd 2.4.43"
+name: httpd
+version: 2.4.43
+kewords:
+- web
+home: https://www.httpd.com/
+icon: http://10.10.15.32/image/httpd-logo.png

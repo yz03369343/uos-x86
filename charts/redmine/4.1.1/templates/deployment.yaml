@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "redmine.fullname" . }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "redmine.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "redmine.name" . }}
+    spec:
+      containers:
+        - name: redmine
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+          env:
+          - name: REDMINE_DB_USERNAME
+            value: redmine
+          - name: REDMINE_DB_MYSQL
+            value: {{ template "redmine.fullname" . }}-database
+          - name: REDMINE_DB_PASSWORD
+            value: redmine            
+          - name: REDMINE_DB_DATABASE
+            value: redmine                      
+          ports:
+          - containerPort: 80
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "redmine.fullname" . }}-database
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "redmine.name" . }}-database
+  template:
+    metadata:
+      labels:
+        app: {{ template "redmine.name" . }}-database
+    spec:
+      containers:
+        - name: redmine-database
+          image: "{{ .Values.dbimage.repository }}:{{ .Values.dbimage.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+          env:
+          - name: MYSQL_USER
+            value: redmine
+          - name: MYSQL_PASSWORD
+            value: redmine           
+          - name: MYSQL_DATABASE
+            value: redmine
+          - name: MYSQL_ROOT_PASSWORD
+            value: redmine
+          ports:
+          - containerPort: 3306

@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "mongo.fullname" . }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "mongo.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "mongo.name" . }}
+    spec:
+      containers:
+        - name: mongo
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+          env:
+          - name: MONGO_INITDB_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ template "mongo.fullname" . }}
+                key: mongo-password
+          - name: MONGO_INITDB_ROOT_USERNAME
+            value: {{ .Values.username | quote }}            
+          ports:
+          - containerPort: 27017
+

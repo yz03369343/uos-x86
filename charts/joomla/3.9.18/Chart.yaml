@@ -1,0 +1,8 @@
+appVersion: 3.9.18
+description: "joomla 3.9.18"
+name: joomla
+version: 3.9.18
+kewords:
+- web
+home: https://www.joomla.com/
+icon: http://10.10.15.32/image/joomla-logo.png

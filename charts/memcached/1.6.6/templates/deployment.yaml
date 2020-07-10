@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "memcached.fullname" . }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "memcached.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "memcached.name" . }}
+    spec:
+      containers:
+        - name: memcached
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+          ports:
+          - containerPort: 11211
+

@@ -1,0 +1,8 @@
+appVersion: 1.19.0
+description: "nginx 1.19.0"
+name: nginx
+version: 1.19.0
+kewords:
+- web
+home: https://www.nginx.com/
+icon: http://10.10.15.32/image/nginx-logo.png

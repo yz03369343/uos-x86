@@ -1,0 +1,8 @@
+appVersion: 1.8.0
+description: "influxdb 10.5.4"
+name: influxdb
+version: 1.8.0
+kewords:
+- web
+home: https://www.influxdb.com/
+icon: http://10.10.15.32/image/influxdb-logo.png

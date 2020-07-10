@@ -1,0 +1,11 @@
+image:
+  repository: 10.10.15.32:5443/x86/postgres
+  tag: 12.3.0
+  pullPolicy: IfNotPresent
+service:
+  type: NodePort
+  port: 5432
+
+username:
+userpassword:
+userdatabase:

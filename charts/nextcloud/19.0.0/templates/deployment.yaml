@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "nextcloud.fullname" . }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "nextcloud.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "nextcloud.name" . }}
+    spec:
+      containers:
+        - name: nextcloud
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+          ports:
+          - containerPort: 80
+

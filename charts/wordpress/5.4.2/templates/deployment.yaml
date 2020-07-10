@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "wordpress.fullname" . }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "wordpress.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "wordpress.name" . }}
+    spec:
+      containers:
+        - name: wordpress
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+          env:
+          - name: WORDPRESS_DB_USER
+            value: wordpress
+          - name: WORDPRESS_DB_HOST
+            value: {{ template "wordpress.fullname" . }}-database
+          - name: WORDPRESS_DB_PASSWORD
+            value: wordpress            
+          - name: WORDPRESS_DB_NAME
+            value: wordpress                      
+          ports:
+          - containerPort: 80
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "wordpress.fullname" . }}-database
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "wordpress.name" . }}-database
+  template:
+    metadata:
+      labels:
+        app: {{ template "wordpress.name" . }}-database
+    spec:
+      containers:
+        - name: wordpress-database
+          image: "{{ .Values.dbimage.repository }}:{{ .Values.dbimage.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+          env:
+          - name: MYSQL_USER
+            value: wordpress
+          - name: MYSQL_PASSWORD
+            value: wordpress           
+          - name: MYSQL_DATABASE
+            value: wordpress
+          - name: MYSQL_ROOT_PASSWORD
+            value: wordpress
+          ports:
+          - containerPort: 3306

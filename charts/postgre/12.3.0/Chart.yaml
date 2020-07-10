@@ -1,0 +1,8 @@
+appVersion: 12.3.0
+description: "postgre 10.5.4"
+name: postgre
+version: 12.3.0
+kewords:
+- web
+home: https://www.postgre.com/
+icon: http://10.10.15.32/image/postgre-logo.png

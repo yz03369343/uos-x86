@@ -1,0 +1,4 @@
+image:
+  repository: 10.10.15.32:5443/x86/elasticsearch
+  tag: 7.8.0
+  pullPolicy: IfNotPresent

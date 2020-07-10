@@ -1,0 +1,4 @@
+image:
+  repository: 10.10.15.32:5443/x86/ghost
+  tag: 3.22.2
+  pullPolicy: IfNotPresent

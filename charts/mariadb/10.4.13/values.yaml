@@ -1,0 +1,12 @@
+image:
+  repository: 10.10.15.32:5443/x86/mariadb
+  tag: 10.4.13
+  pullPolicy: IfNotPresent
+service:
+  type: NodePort
+  port: 3306
+
+username:
+userpassword:
+userdatabase:
+rootpassword: 

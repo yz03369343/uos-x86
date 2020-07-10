@@ -1,0 +1,8 @@
+image:
+  repository: 10.10.15.32:5443/x86/nginx
+  tag: 1.19.0
+  pullPolicy: IfNotPresent
+
+service:
+  type: Nodeport
+  port: 80

@@ -1,0 +1,4 @@
+image:
+  repository: 10.10.15.32:5443/x86/traefik
+  tag: 2.2.1
+  pullPolicy: IfNotPresent

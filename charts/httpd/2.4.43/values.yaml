@@ -1,0 +1,4 @@
+image:
+  repository: 10.10.15.32:5443/x86/httpd
+  tag: 2.4.43
+  pullPolicy: IfNotPresent

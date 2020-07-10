@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "solr.fullname" . }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "solr.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "solr.name" . }}
+    spec:
+      containers:
+        - name: solr
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+          ports:
+          - containerPort: 8983
+

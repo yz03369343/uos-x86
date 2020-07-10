@@ -1,0 +1,4 @@
+image:
+  repository: 10.10.15.32:5443/x86/nextcloud
+  tag: 19.0.0
+  pullPolicy: IfNotPresent

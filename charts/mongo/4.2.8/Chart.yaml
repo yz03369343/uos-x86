@@ -1,0 +1,8 @@
+appVersion: 4.2.8
+description: "mong o 10.5.4"
+name: mongo
+version: 4.2.8
+kewords:
+- web
+home: https://www.mongo.com/
+icon: http://10.10.15.32/image/mongo-logo.png

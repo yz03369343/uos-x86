@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "xwiki.fullname" . }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "xwiki.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "xwiki.name" . }}
+    spec:
+      containers:
+        - name: xwiki
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+          env:
+          - name: DB_USER
+            value: xwiki
+          - name: DB_HOST
+            value: {{ template "xwiki.fullname" . }}-database
+          - name: DB_PASSWORD
+            value: xwiki            
+          - name: DB_DATABASE
+            value: xwiki                        
+          ports:
+          - containerPort: 8080
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "xwiki.fullname" . }}-database
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "xwiki.name" . }}-database
+  template:
+    metadata:
+      labels:
+        app: {{ template "xwiki.name" . }}-database
+    spec:
+      containers:
+        - name: xwiki-database
+          image: "{{ .Values.dbimage.repository }}:{{ .Values.dbimage.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+          env:
+          - name: POSTGRES_USER
+            value: xwiki
+          - name: POSTGRES_PASSWORD
+            value: xwiki           
+          - name: POSTGRES_DB
+            value: xwiki
+          - name: POSTGRES_ROOT_PASSWORD
+            value: xwiki
+          - name: POSTGRES_INITDB_ARGS
+            value: "--encoding=UTF8"
+          ports:
+          - containerPort: 5432

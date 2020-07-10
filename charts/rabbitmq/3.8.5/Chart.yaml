@@ -1,0 +1,8 @@
+appVersion: 3.8.5
+description: "rabbitmq 3.8.5"
+name: rabbitmq
+version: 3.8.5
+kewords:
+- web
+home: https://www.rabbitmq.com/
+icon: http://10.10.15.32/image/rabbitmq-logo.png

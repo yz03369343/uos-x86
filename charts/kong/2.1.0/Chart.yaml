@@ -1,0 +1,8 @@
+appVersion: 2.1.0
+description: "kong 2.1.0"
+name: kong
+version: 2.1.0
+kewords:
+- web
+home: https://www.kong.com/
+icon: http://10.10.15.32/image/kong-logo.png

@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "rabbitmq.fullname" . }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "rabbitmq.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "rabbitmq.name" . }}
+    spec:
+      containers:
+        - name: rabbitmq
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+          ports:
+          - containerPort: 4369
+

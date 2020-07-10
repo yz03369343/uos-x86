@@ -1,0 +1,8 @@
+appVersion: 8.5.2
+description: "so l r 8.5.2"
+name: solr
+version: 8.5.2
+kewords:
+- web
+home: https://www.solr.com/
+icon: http://10.10.15.32/image/solr-logo.png

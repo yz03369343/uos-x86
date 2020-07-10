@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "grafana.fullname" . }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "grafana.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "grafana.name" . }}
+    spec:
+      containers:
+        - name: grafana
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+          ports:
+          - containerPort: 3000
+

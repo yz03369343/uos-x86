@@ -1,0 +1,8 @@
+appVersion: 8.9.1
+description: "drupal 8.9.1"
+name: drupal
+version: 8.9.1
+kewords:
+- web
+home: https://www.drupal.com/
+icon: http://10.10.15.32/image/drupal-logo.png

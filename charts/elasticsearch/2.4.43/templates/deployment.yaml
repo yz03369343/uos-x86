@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "elasticsearch.fullname" . }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "elasticsearch.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "elasticsearch.name" . }}
+    spec:
+      containers:
+        - name: elasticsearch
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+          env:
+            - name: discovery.type
+              value: single-node
+          ports:
+          - containerPort: 9200
+

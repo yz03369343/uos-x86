@@ -1,0 +1,8 @@
+appVersion: 2.2.1
+description: "traefik 2.2.1"
+name: traefik
+version: 2.2.1
+kewords:
+- web
+home: https://www.traefik.com/
+icon: http://10.10.15.32/image/traefik-logo.png

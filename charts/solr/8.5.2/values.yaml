@@ -1,0 +1,4 @@
+image:
+  repository: 10.10.15.32:5443/x86/solr
+  tag: 8.5.2
+  pullPolicy: IfNotPresent

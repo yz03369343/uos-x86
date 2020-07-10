@@ -1,0 +1,4 @@
+image:
+  repository: 10.10.15.32:5443/x86/redis
+  tag: 6.0.5
+  pullPolicy: IfNotPresent

@@ -1,0 +1,8 @@
+appVersion: 5.4.2
+description: "wordpress 5.4.2"
+name: wordpress
+version: 5.4.2
+kewords:
+- web
+home: https://www.wordpress.com/
+icon: http://10.10.15.32/image/wordpress-logo.png

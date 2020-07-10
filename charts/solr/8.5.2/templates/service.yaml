@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "solr.fullname" . }}
+spec:
+  type: NodePort
+  ports:
+    - port: 8983
+      targetPort: 8983
+  selector:
+    app: {{ template "solr.name" . }}
+

@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "influxdb.fullname" . }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "influxdb.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "influxdb.name" . }}
+    spec:
+      initContainers:
+      - name: influxdb-init
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+        command:
+        - /init-influxdb.sh
+        env:
+        - name: INFLUXDB_ADMIN_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ template "influxdb.fullname" . }}
+              key: influxdb-root-password
+        - name: INFLUXDB_USER_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ template "influxdb.fullname" . }}
+              key: influxdb-password
+        - name: INFLUXDB_USER
+          value: {{ .Values.username | quote }} 
+        - name: INFLUXDB_DB
+          value: {{ .Values.userdatabase | quote }} 
+        - name: INFLUXDB_ADMIN_USER
+          value: root
+        volumeMounts:
+        - mountPath: /var/lib/influxdb
+          name: influxdb
+      containers:
+      - name: influxdb
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+        ports:
+        - containerPort: 8086
+        volumeMounts:
+        - mountPath: /var/lib/influxdb
+          name: influxdb
+      volumes:
+      - name: influxdb
+        hostPath:
+          path: /data/rancher/influxdb
+

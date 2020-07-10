@@ -1,0 +1,8 @@
+appVersion: 4.1.1
+description: "redmine 4.1.1"
+name: redmine
+version: 4.1.1
+kewords:
+- web
+home: https://www.redmine.com/
+icon: http://10.10.15.32/image/redmine-logo.png

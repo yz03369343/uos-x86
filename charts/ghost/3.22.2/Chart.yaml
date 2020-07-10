@@ -1,0 +1,8 @@
+appVersion: 3.22.2
+description: "需手动添加环境变量 url=http//$nodeip:$nodeport"
+name: ghost
+version: 3.22.2
+kewords:
+- web
+home: https://www.ghost.com/
+icon: http://10.10.15.32/image/ghost-logo.png

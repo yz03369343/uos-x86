@@ -1,0 +1,4 @@
+image:
+  repository: 10.10.15.32:5443/x86/tomcat
+  tag: 9.0.37
+  pullPolicy: IfNotPresent

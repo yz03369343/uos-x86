@@ -1,0 +1,23 @@
+categories:
+- app
+questions:
+- variable: defaultImage
+  default: "true"
+  description: "Use default Docker image"
+  label: Use Default Image
+  type: boolean
+  show_subquestion_if: false
+  group: "Container Images"
+  subquestions:
+  - variable: image.repository
+    default: "10.10.15.32:5443/x86/ghost"
+    description: "Docker image name"
+    type: string
+    label: Image Name
+  - variable: image.tag
+    default: "3.22.2"
+    description: "Docker image tag"
+    type: string
+    label: Image Tag
+
+

@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "joomla.fullname" . }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "joomla.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "joomla.name" . }}
+    spec:
+      containers:
+        - name: joomla
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+          env:
+          - name: JOOMLA_DB_USER
+            value: joomla
+          - name: JOOMLA_DB_HOST
+            value: {{ template "joomla.fullname" . }}-database
+          - name: JOOMLA_DB_PASSWORD
+            value: joomla            
+          - name: JOOMLA_DB_NAME
+            value: joomla                      
+          ports:
+          - containerPort: 80
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "joomla.fullname" . }}-database
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "joomla.name" . }}-database
+  template:
+    metadata:
+      labels:
+        app: {{ template "joomla.name" . }}-database
+    spec:
+      containers:
+        - name: joomla-database
+          image: "{{ .Values.dbimage.repository }}:{{ .Values.dbimage.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+          env:
+          - name: MYSQL_USER
+            value: joomla
+          - name: MYSQL_PASSWORD
+            value: joomla           
+          - name: MYSQL_DATABASE
+            value: joomla
+          - name: MYSQL_ROOT_PASSWORD
+            value: joomla
+          ports:
+          - containerPort: 3306

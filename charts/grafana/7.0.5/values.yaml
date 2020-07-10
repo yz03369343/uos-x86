@@ -1,0 +1,4 @@
+image:
+  repository: 10.10.15.32:5443/x86/grafana
+  tag: 7.0.5
+  pullPolicy: IfNotPresent

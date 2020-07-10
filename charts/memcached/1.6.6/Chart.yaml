@@ -1,0 +1,8 @@
+appVersion: 1.6.6
+description: "memcached 1.6.6"
+name: memcached
+version: 1.6.6
+kewords:
+- web
+home: https://www.memcached.com/
+icon: http://10.10.15.32/image/memcached-logo.png
