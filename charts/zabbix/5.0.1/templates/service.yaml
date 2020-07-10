@@ -20,7 +20,7 @@ spec:
     - port: 10050
       targetPort: 10050
   selector:
-    app: {{ template "zabbix.name" . }}
+    app: {{ template "zabbix.name" . }}-server
 ---
 apiVersion: v1
 kind: Service
