@@ -20,7 +20,7 @@ spec:
         ports:
         - containerPort: 50000
         volumeMounts:
-        - mountPath: /var/jenkins_home jenkins
+        - mountPath: /var/jenkins_home
           name: jenkins
       volumes:
       - name: jenkins
