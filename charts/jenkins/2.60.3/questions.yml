@@ -10,7 +10,7 @@ questions:
   group: "Container Images"
   subquestions:
   - variable: image.repository
-    default: "10.10.15.32:5443/x86/jekins"
+    default: "10.10.15.32:5443/x86/jenkins"
     description: "Docker image name"
     type: string
     label: Image Name

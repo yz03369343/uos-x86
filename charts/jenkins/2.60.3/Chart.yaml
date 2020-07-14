@@ -1,8 +1,8 @@
 appVersion: 2.60.3
-description: "jekins 10.5.4"
-name: jekins
+description: "jenkins 10.5.4"
+name: jenkins
 version: 2.60.3
 kewords:
 - web
-home: https://www.jekins.com/
-icon: http://10.10.15.32/image/jekins-logo.png
+home: https://www.jenkins.com/
+icon: http://10.10.15.32/image/jenkins-logo.png

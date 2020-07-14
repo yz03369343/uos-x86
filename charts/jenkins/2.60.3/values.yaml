@@ -1,5 +1,5 @@
 image:
-  repository: 10.10.15.32:5443/x86/jekins
+  repository: 10.10.15.32:5443/x86/jenkins
   tag: 2.60.3
   pullPolicy: IfNotPresent
 

@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ template "jekins.fullname" . }}
+  name: {{ template "jenkins.fullname" . }}
 spec:
   selector:
     matchLabels:
-      app: {{ template "jekins.name" . }}
+      app: {{ template "jenkins.name" . }}
   template:
     metadata:
       labels:
-        app: {{ template "jekins.name" . }}
+        app: {{ template "jenkins.name" . }}
     spec:
       containers:
-      - name: jekins
+      - name: jenkins
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
         ports:
@@ -21,9 +21,9 @@ spec:
         - containerPort: 50000
         volumeMounts:
         - mountPath: /etc/gitlab
-          name: jekins
+          name: jenkins
       volumes:
-      - name: jekins
+      - name: jenkins
         hostPath:
-          path: /data/rancher/jekins
+          path: /data/rancher/jenkins
 
