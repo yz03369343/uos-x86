@@ -20,7 +20,7 @@ spec:
         ports:
         - containerPort: 50000
         volumeMounts:
-        - mountPath: /etc/gitlab
+        - mountPath: /var/jenkins_home jenkins
           name: jenkins
       volumes:
       - name: jenkins
