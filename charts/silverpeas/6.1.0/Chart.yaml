@@ -1,0 +1,8 @@
+appVersion: 6.1.0
+description: "silverpeas 6.1.0"
+name: silverpeas
+version: 6.1.0
+kewords:
+- web
+home: https://www.silverpeas.com/
+icon: http://10.10.15.32/image/silverpeas-logo.png

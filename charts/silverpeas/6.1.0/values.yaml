@@ -1,0 +1,8 @@
+image:
+  repository: 10.10.15.32:5443/x86/silverpeas
+  tag: 6.1.0
+  pullPolicy: IfNotPresent
+dbimage:
+  repository: 10.10.15.32:5443/x86/postgres
+  tag: 12.3.0
+

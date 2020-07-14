@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "silverpeas.fullname" . }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "silverpeas.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "silverpeas.name" . }}
+    spec:
+      containers:
+        - name: silverpeas
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+          env:
+          - name: DB_USER
+            value: silverpeas
+          - name: DB_HOST
+            value: {{ template "silverpeas.fullname" . }}-database
+          - name: DB_PASSWORD
+            value: silverpeas            
+          - name: DB_NAME
+            value: silverpeas                        
+          ports:
+          - containerPort: 8000
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "silverpeas.fullname" . }}-database
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "silverpeas.name" . }}-database
+  template:
+    metadata:
+      labels:
+        app: {{ template "silverpeas.name" . }}-database
+    spec:
+      containers:
+        - name: silverpeas-database
+          image: "{{ .Values.dbimage.repository }}:{{ .Values.dbimage.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+          env:
+          - name: POSTGRES_USER
+            value: silverpeas
+          - name: POSTGRES_PASSWORD
+            value: silverpeas           
+          - name: POSTGRES_DB
+            value: silverpeas
+          ports:
+          - containerPort: 5432
