@@ -3,8 +3,3 @@ image:
   tag: 13.1.4
   pullPolicy: IfNotPresent
 
-
-username:
-userpassword:
-userdatabase:
-rootpassword: 
