@@ -50,6 +50,6 @@ spec:
           - name: POSTGRES_PASSWORD
             value: odoo           
           - name: POSTGRES_DB
-            value: odoo
+            value: postgres
           ports:
           - containerPort: 5432
