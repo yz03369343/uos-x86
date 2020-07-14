@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "geonetwork.fullname" . }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "geonetwork.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "geonetwork.name" . }}
+    spec:
+      containers:
+        - name: geonetwork
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+          ports:
+          - containerPort: 8080
+

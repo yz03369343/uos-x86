@@ -1,0 +1,8 @@
+appVersion: 3.10.3
+description: "geonetwork 3.10.3"
+name: geonetwork
+version: 3.10.3
+kewords:
+- web
+home: https://www.geonetwork.com/
+icon: http://10.10.15.32/image/geonetwork-logo.png

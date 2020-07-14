@@ -1,0 +1,4 @@
+image:
+  repository: 10.10.15.32:5443/x86/geonetwork
+  tag: 3.10.3
+  pullPolicy: IfNotPresent
