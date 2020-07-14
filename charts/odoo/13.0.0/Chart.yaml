@@ -1,0 +1,8 @@
+appVersion: 13.0.0
+description: "odoo 13.0.0"
+name: odoo
+version: 13.0.0
+kewords:
+- web
+home: https://www.odoo.com/
+icon: http://10.10.15.32/image/odoo-logo.png

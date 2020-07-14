@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "odoo.fullname" . }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "odoo.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "odoo.name" . }}
+    spec:
+      containers:
+        - name: odoo
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+          env:
+          - name: USER
+            value: odoo
+          - name: HOST
+            value: {{ template "odoo.fullname" . }}-database
+          - name: PASSWORD
+            value: odoo                             
+          ports:
+          - containerPort: 8069
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "odoo.fullname" . }}-database
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "odoo.name" . }}-database
+  template:
+    metadata:
+      labels:
+        app: {{ template "odoo.name" . }}-database
+    spec:
+      containers:
+        - name: odoo-database
+          image: "{{ .Values.dbimage.repository }}:{{ .Values.dbimage.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+          env:
+          - name: POSTGRES_USER
+            value: odoo
+          - name: POSTGRES_PASSWORD
+            value: odoo           
+          - name: POSTGRES_DB
+            value: odoo
+          ports:
+          - containerPort: 5432
