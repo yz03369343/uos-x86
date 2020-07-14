@@ -18,7 +18,7 @@ spec:
           env:
           - name: DB_USER
             value: silverpeas
-          - name: DB_HOST
+          - name: DB_SERVER
             value: {{ template "silverpeas.fullname" . }}-database
           - name: DB_PASSWORD
             value: silverpeas            
