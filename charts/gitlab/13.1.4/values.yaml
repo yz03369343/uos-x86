@@ -1,0 +1,10 @@
+image:
+  repository: 10.10.15.32:5443/x86/gitlab-ce
+  tag: 13.1.4
+  pullPolicy: IfNotPresent
+
+
+username:
+userpassword:
+userdatabase:
+rootpassword: 

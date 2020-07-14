@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "gitlab-ce.fullname" . }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "gitlab-ce.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "gitlab-ce.name" . }}
+    spec:
+      containers:
+      - name: gitlab-ce
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+        ports:
+        - containerPort: 80
+        ports:
+        - containerPort: 443
+        ports:
+        - containerPort: 22
+        volumeMounts:
+        - mountPath: /etc/gitlab
+          name: gitlab-ce-config
+        - mountPath: /var/log/gitlab
+          name: gitlab-ce-log
+        - mountPath: /var/opt/gitlab
+          name: gitlab-ce-data
+      volumes:
+      - name: gitlab-ce-config
+        hostPath:
+          path: /data/rancher/gitlab-ce/config
+      - name: gitlab-ce-log
+        hostPath:
+          path: /data/rancher/gitlab-ce/log
+      - name: gitlab-ce-data
+        hostPath:
+          path: /data/rancher/gitlab-ce/data
+

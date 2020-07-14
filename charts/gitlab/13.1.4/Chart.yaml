@@ -1,0 +1,8 @@
+appVersion: 13.1.4
+description: "gitlab-ce 10.5.4"
+name: gitlab-ce
+version: 13.1.4
+kewords:
+- web
+home: https://www.gitlab-ce.com/
+icon: http://10.10.15.32/image/gitlab-ce-logo.png
